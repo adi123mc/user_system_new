@@ -10,6 +10,7 @@ function user_exists($user) {
 }
 // check if the given username and password combination is valid.
 function vaild_credentials($user, $pass) {
+	$user = htmlspecialchars($user);
 	$user = mysql_real_escape_string($user);
 	$pass = sha1($pass);
 
