@@ -24,5 +24,4 @@ function add_user($user, $pass) {
 
 	mysql_query("INSERT INTO `users` (`user_name` , `user_password`) VALUES ('{$user}', '{$pass}')");
 }
-
 ?>
