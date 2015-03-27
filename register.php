@@ -43,7 +43,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 
 		?>
 	</p>
-	<form action="" method="post">
+	<form action="registed.php" method="post">
 		<p>
 			<label for="username">Username: </label>
 			<input type="text" name="username" id="username" placeholder="username" />
