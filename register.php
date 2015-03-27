@@ -1,28 +1,29 @@
 <?php
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 include('/inc/init-inc.php');
+$errors = array('The email can not be empty.' , 'The username can not be empty.' ,  'the password can not be empty.'  , 'Passwords do not match' ,  'Username already taken.' );
 
 echo '<h1>You wot m8?</h1>';//Fancy stuffs ;3
 
 if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 	if (empty($_POST['email'])) {
-		$errors[] = 'The email can not be empty.';
+		echo $errors[0];
 	}
 
 	if (empty($_POST['username'])) {
-		$errors[] = 'The username can not be empty.';
+		echo $errors[1];
 	}
 
 	if (empty($_POST['password']) || empty($_POST['repeat_password'])) {
-		$errors[] = 'the password can not be empty.';
+		echo $errors[2];
 	}
 
 	if ($_POST['password'] !== $_POST['repeat_password']) {
-		$errors[] = 'Passwords do not match.';
+		echo $errors[3];
 	}
 
 	if (user_exists($_POST['username'])) {
-		$errors[] = 'Username already taken.';
+		echo $errors[4];
 	}
 
 	if (empty($errors)) {
