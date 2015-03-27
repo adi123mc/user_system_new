@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 include('/inc/init-inc.php');
 
 if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
