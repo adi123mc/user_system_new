@@ -2,6 +2,8 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 include('/inc/init-inc.php');
 
+echo '<h1>You wot m8?</h1>';
+
 if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 	if (empty($_POST['username'])) {
 		$errors[] = 'The username can not be empty.';
