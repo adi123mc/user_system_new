@@ -80,7 +80,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 						//Check wether we found a row
 						if (mysql_num_rows($result) == 1) {
 							$errors[] = 'Email is already in use.';
-						} elseif {
+						@} elseif {
 						
 						//Check if username already exists in database
 							
@@ -169,18 +169,21 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 
 		?>
 	</p>
-	<form action="registered.php" method="post">
 	<form action="" method="post">
 		<p>
+			<label for="email">Username: </label>
 			<input type="text" name="email" id="email" placeholder="email" />
 		</p>
 		<p>
+			<label for="username">Username: </label>
 			<input type="text" name="username" id="username" placeholder="username" />
 		</p>
 		<p>
+			<label for="password">Password: </label>
 			<input type="password" name="password" id="password" placeholder="password" />
 		</p>
 		<p>
+			<label for="repeat_password">Repeat Password: </label>
 			<input type="password" name="repeat_password" id="repeat_password" placeholder="repeat password" />
 		</p>
 		<p>
