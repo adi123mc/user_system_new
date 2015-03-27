@@ -6,7 +6,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 include('/inc/vars-inc.php');
 
 include('/inc/init-inc.php');
-$errors = array('The email can not be empty.' , 'The username can not be empty.' ,  'the password can not be empty.'  , 'Passwords do not match' ,  'Username already taken.' );
+$errors = array('The email can not be empty.' , 'The username can not be empty.' ,  'the password can not be empty.'  , 'Passwords do not match' ,  'Username already taken.'  , 'Email is already in use.');
 
 echo '<h1>You wot m8?</h1>';//Fancy stuffs ;3
 echo $current_page;
@@ -23,7 +23,6 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 	if (empty($_POST['password']) || empty($_POST['repeat_password'])) {
 		echo $errors[2];
 	}
-<<<<<<< HEAD
 
 	if ($_POST['password'] !== $_POST['repeat_password']) {
 		echo $errors[3];
@@ -36,10 +35,8 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 	if (empty($errors)) {
 		
 		//Get data submitted from forms
-=======
 	
-	//Get data submitted from forms
->>>>>>> origin/master
+	//Get data submitted from forms origin/master
 		$email = $_POST['email'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
@@ -79,7 +76,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 					
 						//Check wether we found a row
 						if (mysql_num_rows($result) == 1) {
-							$errors[] = 'Email is already in use.';
+							echo $errors[5];
 						} elseif {
 						
 						//Check if username already exists in database
@@ -95,7 +92,8 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 								
 									//Check wether we found a row
 									if (mysql_num_rows($result) == 1) {
-										$errors[] = 'Email is already in use.';
+										echo $errors[5];
+
 										}
 									}		
 											//Prepare for confirmation email
@@ -124,33 +122,11 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 											mail($to, $subject, $message, $headers);
 	
 	
-	
-	
-	
-	
-	
-	
 	//Check if passwords match
 	if ($_POST['password'] !== $_POST['repeat_password']) {
 		$errors[] = 'Passwords do not match.';
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 	if (empty($errors)) {
 		
 		
@@ -158,6 +134,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 	}
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
