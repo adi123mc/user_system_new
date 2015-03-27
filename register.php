@@ -2,9 +2,13 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 include('/inc/init-inc.php');
 
-echo '<h1>You wot m8?</h1>';
+echo '<h1>You wot m8?</h1>';//Fancy stuffs ;3
 
 if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
+	if (empty($_POST['email'])) {
+		$errors[] = 'The email can not be empty.';
+	}
+
 	if (empty($_POST['username'])) {
 		$errors[] = 'The username can not be empty.';
 	}
@@ -22,15 +26,40 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 	}
 
 	if (empty($errors)) {
-		add_user($_POST['username'], $_POST['password']);
-
-		$_SESSION['username'] = htmlentities($_POST['username']);
-
-		header('Location: protected.php');
-		die(mysql_error());
+		
+		//Get data submitted from forms
+		$email = $_POST['email'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		
+		
+		
+		//Make data safe
+		
+		
+		//Prevent HTML and JS injections
+		$email = htmlspecialchars($email);
+		$username = htmlspecialchars($username);
+		$password = htmlspecialchars($password);
+		
+		//Prevent SQL injections
+		$email = mysql_real_escape_string($email);
+		$username = mysql_real_escape_string($username);
+		$password = mysql_real_escape_string($password);
+		
+		//Encrypt password with sha1
+		$password = sha1($password);
+		
+		//Make email lowercase
+		$email = strtolower($email);
+		
+		//Check if any fields already exist
+		
+		
+		//Send confirmation email to user
+		die();
 	}
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +72,11 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 
 		?>
 	</p>
-	<form action="registed.php" method="post">
+	<form action="" method="post">
+		<p>
+			<label for="email">Username: </label>
+			<input type="text" name="email" id="email" placeholder="email" />
+		</p>
 		<p>
 			<label for="username">Username: </label>
 			<input type="text" name="username" id="username" placeholder="username" />
