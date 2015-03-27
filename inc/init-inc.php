@@ -20,5 +20,8 @@ mysql_select_db('user_system');
 $path = dirname(__FILE__);
 
 include("/inc/user-inc.php");
+<<<<<<< HEAD
 
+=======
+>>>>>>> c731167a38fd1659895a35d65149f85db059add7
 ?>
