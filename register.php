@@ -25,7 +25,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 		$_SESSION['username'] = htmlentities($_POST['username']);
 
 		header('Location: protected.php');
-		die(mysql_error());
+		or die(mysql_error());
 	}
 }
 

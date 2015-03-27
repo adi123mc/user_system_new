@@ -9,7 +9,7 @@ $page = substr(end(explode('/', $_SERVER['SCRIPT_NAME'])), 0 , -4);
 if (in_array($page, $exceptions) === false) {
 	if (isset($_SESSTION['username']) === false) {
 		header('Location: login.php');
-		die(mysql_error());
+	or	die(mysql_error());
 	}
 
 }
