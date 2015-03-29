@@ -23,7 +23,6 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 	if (empty($_POST['password']) || empty($_POST['repeat_password'])) {
 		echo $errors[2];
 	}
-<<<<<<< HEAD
 
 	if ($_POST['password'] !== $_POST['repeat_password']) {
 		echo $errors[3];
@@ -35,11 +34,8 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 
 	if (empty($errors)) {
 		
-		//Get data submitted from forms
-=======
 	
 	//Get data submitted from forms
->>>>>>> origin/master
 		$email = $_POST['email'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
@@ -80,7 +76,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 						//Check wether we found a row
 						if (mysql_num_rows($result) == 1) {
 							$errors[] = 'Email is already in use.';
-						@} elseif {
+						} elseif {
 						
 						//Check if username already exists in database
 							
@@ -104,6 +100,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 											$user_key = $username . $email . date("Ymd");
 											$user_key = md5($user_key);
 											
+											//Add user to database but don't activate the user account yet
 											//Prepare SQL
 											$sql = "INSERT INTO `polimf_ninja`.`users` (`id`, `user_key`, `confirmed`, `email`, `username`, `password`) VALUES (NULL, '$user_key', '0', '$email', '$username', '$password');";
 											
