@@ -7,42 +7,37 @@ include('/inc/vars-inc.php');
 
 include('/inc/init-inc.php');
 
-include('/inc/user-inc.php');
+$errors = array('The email can not be empty.' , 'The username can not be empty.' ,  'the password can not be empty.'  , 'Passwords do not match' ,  'Username already taken.'  , 'Email is already in use.');
 
-$errors = array('<br /> The email can not be empty. <br />' , ' <br /> The username can not be empty. <br />' ,  '<br /> the password can not be empty. <br />'  , '<br /> Passwords do not match. <br />' ,  '<br /> Username already taken. <br />'  , '<br /> Email is already in use. <br />');
-
+echo '<h1>You wot m8?</h1>';//Fancy stuffs ;3
 echo $current_page;
 
-//Checking 
+if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
+	if (empty($_POST['email'])) {
+		echo $errors[0];
+	}
+
 	if (empty($_POST['username'])) {
 		echo $errors[1];
-		}
+	}
 
 	if (empty($_POST['password']) || empty($_POST['repeat_password'])) {
 		echo $errors[2];
 	}
 
-	//Check if passwords match
 	if ($_POST['password'] !== $_POST['repeat_password']) {
 		echo $errors[3];
-	}
-	
-	if (empty($errors)) {	
-		die();
 	}
 
 	if (user_exists($_POST['username'])) {
 		echo $errors[4];
 	}
 
-<<<<<<< HEAD
-	if (empty($errors) , (isset($_POST['username'], $_POST['password'], $_POST['repeat_password']))  , $_POST['password'] == $_POST['repeat_password']) {
-		add_user();
-=======
 	if (empty($errors)) {
 		
+		//Get data submitted from forms
 	
-	//Get data submitted from forms
+	//Get data submitted from forms origin/master
 		$email = $_POST['email'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
@@ -85,9 +80,7 @@ echo $current_page;
 							echo $errors[5];
 						} elseif {
 							$errors[] = 'Email is already in use.';
-
-						} elseif {
-
+						} elseif { 
 						
 						//Check if username already exists in database
 							
@@ -112,7 +105,6 @@ echo $current_page;
 											$user_key = $username . $email . date("Ymd");
 											$user_key = md5($user_key);
 											
-											//Add user to database but don't activate the user account yet
 											//Prepare SQL
 											$sql = "INSERT INTO `polimf_ninja`.`users` (`id`, `user_key`, `confirmed`, `email`, `username`, `password`) VALUES (NULL, '$user_key', '0', '$email', '$username', '$password');";
 											
@@ -136,9 +128,14 @@ echo $current_page;
 	//Check if passwords match
 	if ($_POST['password'] !== $_POST['repeat_password']) {
 		$errors[] = 'Passwords do not match.';
->>>>>>> origin/master
 	}
-
+	
+	if (empty($errors)) {
+		
+		
+		die();
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -153,6 +150,10 @@ echo $current_page;
 		?>
 	</p>
 	<form action="" method="post">
+		<p>
+			<label for="email">Username: </label>
+			<input type="text" name="email" id="email" placeholder="email" />
+		</p>
 		<p>
 			<label for="username">Username: </label>
 			<input type="text" name="username" id="username" placeholder="username" />
