@@ -26,11 +26,14 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 	if (user_exists($_POST['username'])) {
 		$errors[] = 'Username already taken.';
 	}
-
+	
 	if (empty($errors)) {
 		add_user($_POST['username'] , $_POST['password']);
 
 		$_SESSION['username'] = htmlentities($_POST['username']);
+
+		header('Location: protected.php');
+		die();
 	}
 
 ?>
@@ -60,7 +63,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 	<form action="" method="post">
 		<p>
 			<label for="username">Username: </label>
-			<input type="text" name="username" id="username" placeholder="username" value="<?php if (isset($_POST['username'])) echo htmlentities($_POST['username']); ?>" />
+			<input type="text" name="username" id="username" placeholder="username" value="<?php if (isset($_POST['username'])) { echo htmlentities($_POST['username']); } ?>" />
 		</p>
 		<p>
 			<label for="password">Password: </label>
