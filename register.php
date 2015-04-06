@@ -42,7 +42,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 		header('Location: protected.php');
 		die();
 	}
-
+}
 ?>
 
 <!DOCTYPE html>
@@ -87,4 +87,3 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 
 </body>
 </html>
-<?php } ?>
