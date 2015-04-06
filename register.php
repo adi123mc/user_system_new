@@ -6,11 +6,14 @@ include('/inc/init-inc.php');
 
 $errors = array();
 
+//checks
 if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
+	//checking if the username is empty.
 	if (empty($_POST['username'])) {
 		$errors[] = 'The username can not be empty.';
 	}
 
+	//checking if the passwords are match.
 	if (empty($_POST['password']) || empty($_POST['repeat_password'])) {
 		$errors[] = 'Passwords do not match';
 	}
@@ -19,15 +22,19 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 		$errors[] = 'The passwords are not match';
 	}
 
+	//checking if the username is same like the password
 	if ($_POST['username'] === $_POST['password']) {
 		$errors[] = 'Dont use your username as a password';
 	}
 
+	//checking if the user exists
 	if (user_exists($_POST['username'])) {
 		$errors[] = 'Username already taken.';
 	}
 	
+	//checking if the errors array is empty 
 	if (empty($errors)) {
+		//adding user to the database
 		add_user($_POST['username'] , $_POST['password']);
 
 		$_SESSION['username'] = htmlentities($_POST['username']);
