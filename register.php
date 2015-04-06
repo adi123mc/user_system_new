@@ -84,6 +84,5 @@ if (isset($_POST['username'], $_POST['password'], $_POST['repeat_password'])) {
 			<input type="submit" value="Register" />
 		</p>
 	</form>
-
 </body>
 </html>
